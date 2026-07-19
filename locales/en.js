@@ -6,9 +6,9 @@
 const I18N_EN={
   /* ---- brand / navigation ---- */
   "app.subtitle":"Listen. Sing. Write.",
-  "nav.allLessons":"All lessons",
+  "nav.allLessons":"All Lessons",
   "nav.lessonN":"Lesson {n}",
-  "nav.myProgress":"My progress",
+  "nav.myProgress":"My Progress",
   "nav.instructor":"Instructor",
   "nav.studio":"Studio",
   "nav.home":"Home",
@@ -17,7 +17,7 @@ const I18N_EN={
   /* ---- landing page ---- */
   "landing.tagline":"<span class='c1'>Listen.</span> <span class='c2'>Sing.</span> <span class='c3'>Write.</span>",
   "landing.lead":"Train your musical ear with Mia — rhythm, pitch, solfège, sight singing, error detection and dictation, woven together the way real musicianship works.",
-  "landing.start":"▶ Start training",
+  "landing.start":"▶ Start Training",
   "landing.card.listen.t":"Listen",
   "landing.card.listen.b":"Find the beat, hear the grouping, catch the changed note — your ear leads every lesson.",
   "landing.card.sing.t":"Sing",
@@ -61,7 +61,7 @@ const I18N_EN={
   "lesson.miaTipLabel":"Mia's Tip:",
   "lesson.letsTryLabel":"Let's Try:",
   "lesson.placeholder":"This lesson is planned but not built yet — it is a placeholder, not a finished lesson.",
-  "lesson.backToc":"← All lessons",
+  "lesson.backToc":"← All Lessons",
   "lesson.notFound":"Lesson not found",
 
   /* ---- generic ui ---- */
@@ -411,7 +411,7 @@ const I18N_EN={
   "l11.summary":"Learn how steady beats are organized into groups of two, three, and four.",
   "l11.next.blurb":"You're ready to explore how high and low sounds are represented in music.",
 
-  "prog.title":"My progress",
+  "prog.title":"My Progress",
   "prog.none":"No attempts recorded yet on this device.",
   "sound.tapToStart":"Tap anywhere to enable sound"
 };
