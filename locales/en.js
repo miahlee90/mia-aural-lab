@@ -10,6 +10,7 @@ const I18N_EN={
   "nav.lessonN":"Lesson {n}",
   "nav.myProgress":"My progress",
   "nav.instructor":"Instructor",
+  "nav.studio":"Studio",
   "nav.home":"Home",
   "toc.title":"All Lessons",
 

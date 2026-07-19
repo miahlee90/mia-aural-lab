@@ -11,6 +11,7 @@ const I18N_ES={
   "nav.lessonN":"Lección {n}",
   "nav.myProgress":"Mi progreso",
   "nav.instructor":"Profesor",
+  "nav.studio":"Estudio",
   "nav.home":"Inicio",
   "toc.title":"Todas las lecciones",
 
