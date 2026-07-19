@@ -5,7 +5,7 @@
    they are injected via {vars} or written literally in every language. */
 const I18N_EN={
   /* ---- brand / navigation ---- */
-  "app.subtitle":"Listen. Sing. Read. Write.",
+  "app.subtitle":"Listen. Sing. Write.",
   "nav.allLessons":"All lessons",
   "nav.lessonN":"Lesson {n}",
   "nav.myProgress":"My progress",

@@ -6,7 +6,7 @@
    keys stay untranslated. UTF-8. */
 const I18N_ES={
   /* ---- brand / navigation ---- */
-  "app.subtitle":"Escucha. Canta. Lee. Escribe.",
+  "app.subtitle":"Escucha. Canta. Escribe.",
   "nav.allLessons":"Todas las lecciones",
   "nav.lessonN":"Lección {n}",
   "nav.myProgress":"Mi progreso",
