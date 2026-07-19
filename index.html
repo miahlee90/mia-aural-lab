@@ -9,7 +9,8 @@
 .hero{color:#fff;text-align:left;position:relative;overflow:hidden;
   display:flex;flex-direction:column;justify-content:center;min-height:50vh;padding:60px 20px 68px;
   background:linear-gradient(135deg,#12143c 0%,#22246e 55%,#3a2fae 100%)}
-.hero .inner{max-width:860px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero .inner{max-width:860px;margin:0 auto;width:100%;position:relative;z-index:1;
+  display:block;padding:0} /* al-header's flex-row header layout must not apply to the landing hero */
 .hero .eyebrow{font-size:13.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:rgba(255,255,255,.65);margin-bottom:10px}
 .hero h1{font-size:2.4rem;font-weight:800;letter-spacing:-.6px;margin-bottom:6px}
