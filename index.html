@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aural Lab</title>
+<link rel="stylesheet" href="css/style.css?v=001">
+<style>
+.hero{color:#fff;text-align:left;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;min-height:36vh;padding:44px 16px;
+  background:linear-gradient(135deg,#12143c 0%,#22246e 55%,#3a2fae 100%)}
+.hero .inner{max-width:860px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero .eyebrow{font-size:13.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);margin-bottom:10px}
+.hero h1{font-size:2rem;font-weight:800;letter-spacing:-.6px;margin-bottom:6px}
+.hero .tagline{font-size:1.25rem;font-weight:800;margin-bottom:12px}
+.hero .tagline .c1{color:var(--gold)}.hero .tagline .c2{color:var(--pink)}
+.hero .tagline .c3{color:var(--sky)}.hero .tagline .c4{color:#9ef0c0}
+.hero h1::after{content:"";display:block;width:64px;height:5px;border-radius:3px;
+  background:linear-gradient(90deg,var(--sky),var(--pink));margin:12px 0 0}
+.hero p{max-width:600px;margin:0 0 24px;color:rgba(255,255,255,.88)}
+.hero .btns{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap}
+.hero .btns a{display:inline-block;background:var(--gold);color:var(--brand-dark);font-weight:800;
+  padding:14px 30px;border-radius:9999px;box-shadow:0 6px 20px rgba(255,209,102,.35);
+  transition:transform .12s,box-shadow .2s;text-decoration:none}
+.hero .btns a:hover{background:#ffc247;transform:translateY(-2px)}
+.hero .btns a.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6);box-shadow:none}
+main{max-width:860px;margin:0 auto;padding:16px 16px 40px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:18px}
+.how .card{text-align:center;margin-top:0}
+.how h2{font-size:1.1rem;font-weight:800;color:var(--brand-dark)}
+.how h2::after{content:"";display:block;width:42px;height:4px;border-radius:2px;
+  background:linear-gradient(90deg,var(--primary),var(--sky));margin:7px auto 0}
+.how p{margin-top:10px;color:var(--muted);font-size:14px}
+.wide{margin-top:16px;text-align:left}
+footer{text-align:center;padding:4px 16px 28px;color:var(--muted);font-size:14px}
+footer a{color:var(--primary);font-weight:600}
+@media(max-width:560px){ .hero h1{font-size:1.55rem} .hero{min-height:0} }
+</style>
+</head>
+<body>
+<div class="hero al-header">
+  <div class="inner">
+    <div class="eyebrow">Mia Music Studio</div>
+    <h1>🎧 Aural Lab</h1>
+    <p class="tagline" data-i18n-html="landing.tagline"></p>
+    <p data-i18n="landing.lead"></p>
+    <div class="btns">
+      <a href="lessons.html" data-i18n="landing.start"></a>
+      <a class="ghost" href="student.html" data-i18n="nav.myProgress"></a>
+    </div>
+  </div>
+</div>
+<main>
+  <div class="how">
+    <div class="card"><h2 data-i18n="landing.card.listen.t"></h2><p data-i18n="landing.card.listen.b"></p></div>
+    <div class="card"><h2 data-i18n="landing.card.sing.t"></h2><p data-i18n="landing.card.sing.b"></p></div>
+    <div class="card"><h2 data-i18n="landing.card.read.t"></h2><p data-i18n="landing.card.read.b"></p></div>
+    <div class="card"><h2 data-i18n="landing.card.write.t"></h2><p data-i18n="landing.card.write.b"></p></div>
+  </div>
+  <div class="card wide">
+    <h2 style="font-size:1.1rem;font-weight:800;color:var(--brand-dark)" data-i18n="landing.path.t"></h2>
+    <p style="margin-top:8px;color:var(--muted);font-size:14px" data-i18n-html="landing.path.b"></p>
+  </div>
+</main>
+<footer>
+  <a href="student.html" data-i18n="footer.student"></a> &nbsp;·&nbsp;
+  <a href="teacher.html" data-i18n="footer.teacher"></a>
+</footer>
+<script src="js/config.js?v=002"></script>
+<script src="locales/en.js?v=002"></script>
+<script src="locales/es.js?v=002"></script>
+<script src="locales/ko.js?v=002"></script>
+<script src="js/i18n.js?v=002"></script>
+<script>ALI18N.apply();</script>
+</body>
+</html>

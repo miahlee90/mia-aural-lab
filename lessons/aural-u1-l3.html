@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1-3 Steps, Skips, and Repeated Notes · Aural Lab</title>
+<link rel="stylesheet" href="../css/style.css?v=022">
+</head>
+<body>
+<header class="al-header">
+  <div class="inner">
+    <h1 id="appName"></h1>
+    <span class="sub" data-i18n="app.subtitle"></span>
+    <a class="hdr-link" href="../lessons.html" data-i18n="toc.title"></a>
+    <a class="hdr-link" href="../student.html" data-i18n="nav.myProgress"></a>
+  </div>
+</header>
+<main class="al-main">
+
+  <section class="lesson-head card">
+    <div class="crumb" id="lessonCrumb"></div>
+    <h2 id="lessonTitle"></h2>
+    <p class="desc" id="lessonSummary"></p>
+    <div class="hdr-meta" style="justify-content:space-between;align-items:center">
+      <span id="hdrMeta"></span>
+      <button class="btn ghost sm sc-btn" id="btnSound" type="button"></button>
+    </div>
+  </section>
+
+  <div id="soundHost"></div>
+
+  <div id="sections"></div>
+
+  <nav id="lessonNav"></nav>
+
+</main>
+<script src="../js/config.js?v=022"></script>
+<script src="../locales/en.js?v=022"></script>
+<script src="../locales/es.js?v=022"></script>
+<script src="../locales/ko.js?v=022"></script>
+<script src="../js/i18n.js?v=022"></script>
+<script src="../locales/curriculum.es.js?v=022"></script>
+<script src="../js/mia.js?v=022"></script>
+<script src="../js/audio.js?v=022"></script>
+<script src="../js/rhythm-input.js?v=022"></script>
+<script src="../js/curriculum.js?v=022"></script>
+<script src="../js/lesson-nav.js?v=022"></script>
+<script src="../js/progress.js?v=022"></script>
+<script src="../js/lms.js?v=022"></script>
+<script src="../js/rhythm-activities.js?v=022"></script>
+<script src="../js/pitch-activities.js?v=022"></script>
+<script src="../js/pitch-grid.js?v=022"></script>
+<script src="../js/pitch3-activities.js?v=022"></script>
+<script src="../js/lesson-engine.js?v=022"></script>
+<script>
+document.getElementById("appName").textContent=AL_CONFIG.APP_NAME;
+ALI18N.apply(); ALMia.defs();
+</script>
+<script src="../js/lesson-u1-l3.js?v=022"></script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+/* Aural Lab — stylesheet aligned with the Mia Music Studio design system
+   (same visual language as Piano Lab / Music Fundamentals): indigo CTA
+   #533afd used sparingly, ink-navy text #0d253d (never black), cream
+   background, gradient-mesh header band, pill buttons, hairline cards with
+   blue-tinted shadows, Inter. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap');
+
+:root{
+  --primary:#533afd; --primary-dark:#4434d4; --primary-press:#2e2b8c; --primary-soft:#665efd;
+  --primary-subtle:#b9b9f9; --brand-dark:#1c1e54;
+  --ink:#0d253d; --ink-2:#273951; --muted:#64748d;
+  --accent:#E8A33D; --accent-dark:#cf8f2e;
+  --correct:#2E8B57; --wrong:#ea2261; --done:#9aa6b8;
+  --bg:#f6f0e2; --card:#ffffff; --cream:#f1e2c4; --hairline:#e7ddc8; --hairline-input:#c9b98f;
+  --lh:var(--accent-dark); --rh:var(--primary);
+  --sky:#7fb4ff; --gold:#ffd166; --pink:#f96bee;
+  --radius:12px;
+  --shadow:0 1px 3px rgba(0,55,112,.08);
+  --shadow-2:0 8px 24px rgba(0,55,112,.08), 0 2px 6px rgba(0,55,112,.04);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+/* font stack ready for English, Spanish and future Korean: Latin (incl.
+   Spanish diacritics) renders in Inter; Korean falls through to Noto Sans
+   KR / system Korean fonts. Load the Noto Sans KR webfont when ko ships. */
+body{font-family:Inter,"SF Pro Display",-apple-system,"Segoe UI",Roboto,"Noto Sans",
+  "Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  background:var(--bg);color:var(--ink);font-size:15.5px;line-height:1.55}
+b,strong{font-weight:600}
+a{color:inherit}
+
+/* header — same hero art family as the studio: deep navy-indigo gradient,
+   faint tilted staff + notes, glow + vignette (headphone-listening variant:
+   no piano keys, a soft sound-wave arc instead) */
+.al-header{color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#12143c 0%,#22246e 55%,#3a2fae 100%)}
+.al-header::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='260' viewBox='0 0 900 260' preserveAspectRatio='xMaxYMid slice'><defs><radialGradient id='glow' cx='0.7' cy='0.25' r='0.6'><stop offset='0' stop-color='%237fb4ff' stop-opacity='0.14'/><stop offset='1' stop-color='%237fb4ff' stop-opacity='0'/></radialGradient><radialGradient id='vig' cx='0.42' cy='0.4' r='0.85'><stop offset='0.6' stop-color='%23070926' stop-opacity='0'/><stop offset='1' stop-color='%23070926' stop-opacity='0.38'/></radialGradient></defs><rect width='900' height='260' fill='url(%23glow)'/><g stroke='%23ffffff' stroke-opacity='0.08' stroke-width='1.4' transform='rotate(-6 400 130)'><line x1='20' y1='96' x2='740' y2='96'/><line x1='20' y1='107' x2='740' y2='107'/><line x1='20' y1='118' x2='740' y2='118'/><line x1='20' y1='129' x2='740' y2='129'/><line x1='20' y1='140' x2='740' y2='140'/></g><g fill='%23ffffff' fill-opacity='0.09' stroke='%23ffffff' stroke-opacity='0.09' stroke-width='2.2' transform='rotate(-6 400 130)'><ellipse cx='130' cy='108' rx='8' ry='5.6' transform='rotate(-18 130 108)'/><line x1='137' y1='106' x2='137' y2='72'/><ellipse cx='240' cy='130' rx='8' ry='5.6' transform='rotate(-18 240 130)'/><line x1='247' y1='128' x2='247' y2='94'/><ellipse cx='330' cy='96' rx='8' ry='5.6' transform='rotate(-18 330 96)'/><line x1='323' y1='98' x2='323' y2='132'/><ellipse cx='470' cy='118' rx='8' ry='5.6' transform='rotate(-18 470 118)'/><line x1='477' y1='116' x2='477' y2='82'/><ellipse cx='600' cy='104' rx='8' ry='5.6' transform='rotate(-18 600 104)'/><line x1='593' y1='106' x2='593' y2='140'/><ellipse cx='690' cy='126' rx='8' ry='5.6' transform='rotate(-18 690 126)'/><line x1='697' y1='124' x2='697' y2='90'/></g><g fill='none' stroke='%23ffffff' stroke-linecap='round' transform='translate(700 130)'><path d='M0 -34 A46 46 0 0 1 0 34' stroke-opacity='0.20' stroke-width='6'/><path d='M22 -52 A72 72 0 0 1 22 52' stroke-opacity='0.13' stroke-width='6'/><path d='M44 -70 A98 98 0 0 1 44 70' stroke-opacity='0.08' stroke-width='6'/></g><rect width='900' height='260' fill='url(%23vig)'/></svg>") right center/cover no-repeat}
+.al-header::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(40% 90% at 85% 10%,rgba(127,180,255,.22),transparent 65%),
+  radial-gradient(35% 80% at 12% 100%,rgba(255,209,102,.14),transparent 60%)}
+.al-header .inner{max-width:1080px;margin:0 auto;padding:30px 20px 34px;position:relative;z-index:1;
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.al-header h1{margin:0;font-size:2rem;font-weight:800;letter-spacing:-.5px;line-height:1.15}
+.al-header h1 a{text-decoration:none}
+.al-header h1::after{content:"";display:block;width:64px;height:5px;border-radius:3px;
+  background:linear-gradient(90deg,var(--sky),var(--pink));margin-top:10px}
+.al-header .sub{color:rgba(255,255,255,.85);font-size:14px}
+.hdr-link{margin-left:auto;color:#fff;font-size:13.5px;font-weight:700;
+  background:rgba(255,255,255,.13);padding:6px 16px;border-radius:9999px;text-decoration:none}
+.hdr-link~.hdr-link{margin-left:0}
+.hdr-link:hover{background:rgba(255,255,255,.24)}
+/* language selector (auto-mounted in the header by i18n.js) */
+.lang-sel{font:600 13px/1.2 Inter,"Noto Sans KR","Malgun Gothic",sans-serif;color:#fff;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.35);
+  border-radius:9999px;padding:6px 12px;cursor:pointer}
+.lang-sel option{color:var(--ink)}
+.al-main{max-width:1080px;margin:0 auto;padding:14px 20px 60px}
+
+.card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:18px 20px;margin-top:16px}
+
+/* lesson header block: crumb, title, and the three student-facing fields */
+.lesson-head .crumb{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--primary-dark);background:rgba(185,185,249,.35);
+  border-radius:9999px;padding:3px 10px;margin-bottom:8px}
+.lesson-head h2{margin:0 0 6px;font-size:1.45rem;font-weight:800;letter-spacing:-.3px;color:var(--brand-dark)}
+.lesson-head .desc{margin:0;font-weight:600}
+.lesson-head .goal{margin:3px 0 0;color:var(--muted);font-size:13.5px}
+.lets-try{margin-top:10px;font-size:14px;color:var(--ink-2)}
+.lets-try b{color:var(--primary-dark)}
+.skill-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.skill-tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:9999px;
+  background:#edf4ff;color:#2b5aa0}
+.skill-tag.sk-rhythm{background:#f2effe;color:var(--primary-dark)}
+.skill-tag.sk-solfege{background:#fdeffb;color:#a2308f}
+.skill-tag.sk-singing{background:#fdeed3;color:var(--accent-dark)}
+.skill-tag.sk-dictation{background:#e2f3e9;color:#1d6b42}
+.skill-tag.sk-harmony{background:#fdeeee;color:#b23a3a}
+.skill-tag.sk-error{background:#f3eedd;color:#8a6d1e}
+.track-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:9999px;
+  background:var(--brand-dark);color:#ffd166}
+
+/* Mia + bubble (never over notation or controls — her own strip) */
+.mia-strip{display:flex;align-items:center;gap:12px;margin:14px 2px 0}
+.mia-avatar{width:64px;height:78px;flex:none;filter:drop-shadow(0 2px 4px rgba(0,55,112,.18))}
+.mia-bubble{position:relative;flex:1;background:#fff;border:1px solid var(--hairline);
+  border-radius:12px;box-shadow:var(--shadow);padding:11px 16px;
+  font-size:14px;color:var(--muted);min-height:20px}
+.mia-bubble::before{content:"";position:absolute;left:-7px;top:50%;
+  transform:translateY(-50%) rotate(45deg);width:12px;height:12px;background:#fff;
+  border-left:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.mia-bubble b{color:var(--ink)}
+.mia-strip-sm .mia-avatar{width:50px;height:62px}
+.mia-strip-sm .mia-bubble{background:var(--cream);border-color:#ded1b0;flex:0 1 auto;
+  font-size:13.5px;color:var(--ink-2)}
+.mia-strip-sm .mia-bubble::before{background:var(--cream);border-color:#ded1b0}
+
+/* segmented pills + transport buttons (shared) */
+.seg{display:flex;border:1px solid var(--hairline);border-radius:9999px;overflow:hidden;background:#fff}
+.seg button{border:0;border-radius:0;background:#fff;color:var(--muted);padding:8px 16px;
+  font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;min-height:36px;transition:background .15s}
+.seg button+button{border-left:1px solid var(--hairline)}
+.seg button.on{background:linear-gradient(135deg,#533afd,#665efd);color:#fff}
+.seg button:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+  outline:2px solid var(--primary);outline-offset:2px}
+a.btn{text-decoration:none;display:inline-flex;align-items:center}
+/* buttons/cards must absorb longer Spanish (and future Korean) labels:
+   wrap instead of overflowing, no fixed widths */
+.btn{white-space:normal;text-align:center}
+.btn{font:inherit;font-weight:700;cursor:pointer;border:none;border-radius:9999px;
+  min-height:44px;padding:10px 26px;background:linear-gradient(135deg,#533afd,#665efd);color:#fff;
+  transition:transform .12s,box-shadow .2s}
+.btn:hover{background:linear-gradient(135deg,#4434d4,#533afd);box-shadow:0 4px 14px rgba(83,58,253,.35)}
+.btn:active{transform:scale(.97);background:var(--primary-press)}
+.btn:disabled{opacity:.4;cursor:default;box-shadow:none;transform:none}
+.btn.ghost{background:#fff;color:var(--primary);border:1px solid var(--hairline)}
+.btn.ghost:hover{background:#f4f2ff;border-color:var(--primary)}
+/* deep-navy Play/Start buttons (Theory Lab .play) */
+.btn.dark{background:linear-gradient(135deg,#1c1e54,#2e2b8c)}
+.btn.dark:hover{background:linear-gradient(135deg,#23265f,#3a37a8);box-shadow:0 4px 14px rgba(28,30,84,.4)}
+/* navy-toned outline (utility buttons: Hear/Undo/Clear/Continue) — keeps the
+   lone violet button, "Go to the Quiz", visually distinct */
+.btn.ghost.dark{background:#fff;color:#2a2c66;border:1.5px solid #c6c8e6}
+.btn.ghost.dark:hover{background:#f0f0fb;border-color:#2e2b8c}
+/* fixed-height content area above the transport row, so Play/Next/Continue
+   stay anchored in one place across questions of differing heights */
+.st-arena{display:flex;flex-direction:column}
+/* the button strip is its OWN divided zone at the bottom of the card: a
+   hairline separates it from the exercise above, and (with arenaMin set)
+   its position never changes between questions */
+.act-card .st-transport{border-top:1.5px solid var(--hairline);
+  padding-top:14px;margin-top:16px;min-height:60px}
+.ctl-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.ctl-row label{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+.ctl-row input[type=range]{width:140px;accent-color:var(--primary)}
+.ctl-row .chk input{width:16px;height:16px;accent-color:var(--primary)}
+
+/* ============ aural components ============ */
+
+/* Ready / Go! cue on the last two count-in beats */
+.ready-go{min-height:44px;margin-top:12px;text-align:center;font-weight:800;font-size:30px;
+  letter-spacing:.04em;color:var(--primary-dark)}
+.ready-go.go{color:var(--correct)}
+.ready-go.pop{animation:rg-pop .5s ease-out}
+@keyframes rg-pop{0%{transform:scale(.5);opacity:0}45%{transform:scale(1.18);opacity:1}100%{transform:scale(1)}}
+
+/* beat dots — the visual pulse */
+.beat-dots{display:flex;gap:14px;justify-content:center;align-items:center;
+  min-height:64px;flex-wrap:wrap}
+.beat-dot{position:relative;width:34px;height:34px;border-radius:50%;background:#e9e2cf;border:2px solid var(--hairline);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--muted);
+  transition:transform .08s,background .1s}
+.beat-dot.strong{width:44px;height:44px;border-color:var(--hairline-input)}
+.beat-dot.lit{background:var(--primary-subtle);border-color:var(--primary);color:var(--primary-press);
+  transform:scale(1.18)}
+.beat-dot.lit.strong{background:var(--primary);color:#fff}
+/* Strong/Weak target: a down-arrow points AT the beat in question, so it's
+   never ambiguous which beat is being asked about (the ring alone read as
+   "same size") */
+.beat-dots:has(.picked){padding-top:30px}
+.beat-dot.picked{outline:3px solid var(--accent);outline-offset:2px}
+.beat-dot.picked::before{content:"";position:absolute;left:50%;top:-26px;transform:translateX(-50%);
+  border-left:10px solid transparent;border-right:10px solid transparent;border-top:14px solid var(--accent)}
+.beat-dot.good{background:#cfe9da;border-color:var(--correct);color:#1d6b42}
+.beat-dot.bad{background:#fbd3e0;border-color:var(--wrong);color:#9d1746}
+.beat-dot.hidden-pulse{opacity:.25}
+
+/* tap pads (mobile) — big LEFT / RIGHT touch areas */
+.tap-pads{display:flex;gap:12px;margin-top:14px}
+.tap-pad{flex:1;min-height:110px;border-radius:16px;border:2px solid var(--hairline);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  font-weight:800;font-size:15px;letter-spacing:.06em;cursor:pointer;
+  user-select:none;-webkit-user-select:none;touch-action:none}
+.tap-pad small{font-weight:600;font-size:11.5px;letter-spacing:.02em;color:var(--muted)}
+.tap-pad.tp-left{background:#fdf3df;color:var(--accent-dark);border-color:#ecd9ad}
+.tap-pad.tp-right{background:#f2effe;color:var(--primary-dark);border-color:#d4cdfb}
+.tap-pad.tp-active{transform:scale(.96)}
+.tap-pad.tp-active.tp-left{background:var(--accent);color:#fff;border-color:var(--accent-dark)}
+.tap-pad.tp-active.tp-left small{color:#fff}
+.tap-pad.tp-active.tp-right{background:var(--primary);color:#fff;border-color:var(--primary-dark)}
+.tap-pad.tp-active.tp-right small{color:#fff}
+.tap-hint{text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
+.tap-hint kbd{font-family:inherit;font-weight:800;background:#fff;border:1px solid var(--hairline-input);
+  border-bottom-width:3px;border-radius:6px;padding:1px 8px;color:var(--ink)}
+
+/* answer choice buttons */
+.choices{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.choice{font:inherit;font-size:15px;font-weight:700;cursor:pointer;min-height:52px;min-width:110px;
+  max-width:100%;white-space:normal;
+  border:2px solid var(--hairline);border-radius:14px;background:#fff;color:var(--ink-2);
+  padding:10px 22px;transition:transform .1s,box-shadow .15s}
+.choice:hover{box-shadow:var(--shadow-2);transform:translateY(-2px)}
+.choice.picked{border-color:var(--primary);background:#f2effe;color:var(--primary-dark)}
+.choice.good{border-color:var(--correct);background:#e2f3e9;color:#1d6b42}
+.choice.bad{border-color:var(--wrong);background:#fdeaf1;color:#9d1746}
+.choice:disabled{cursor:default;transform:none;box-shadow:none;opacity:.75}
+
+/* learn flow: stacked activity cards + non-clickable step bar */
+.step-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.step-chip{font-size:13px;font-weight:700;color:var(--muted);background:var(--bg);
+  border:1px solid var(--hairline);border-radius:9999px;padding:7px 14px}
+.step-chip b{display:inline-flex;width:19px;height:19px;border-radius:50%;background:var(--cream);
+  color:var(--brand-dark);align-items:center;justify-content:center;font-size:11.5px;margin-right:6px}
+.step-chip.done{background:#e2f3e9;border-color:#bfe3cd;color:#1d6b42}
+.step-chip.done b{background:var(--correct);color:#fff}
+.step-arr{color:var(--hairline-input);font-weight:800}
+.act-head{font-size:1.05rem;font-weight:800;color:var(--brand-dark)}
+.act-help{margin-top:4px;color:var(--muted);font-size:13.5px}
+.step-bar button{font:inherit;cursor:pointer}
+.step-chip.lockedchip{opacity:.55;cursor:not-allowed}
+.step-note{margin-top:8px;font-size:13px;color:var(--accent-dark);font-weight:600}
+/* compact summary card for completed / collapsed activities & questions */
+.act-sum{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px}
+.act-sum .sum-ok{color:var(--correct);font-weight:800;font-size:18px}
+.act-sum .sum-bad{color:var(--wrong);font-weight:800;font-size:18px}
+.act-sum .sum-ttl{font-weight:700;color:var(--brand-dark);flex:1}
+.act-sum .sum-score{color:var(--muted);font-weight:700;font-feature-settings:"tnum"}
+.btn.sm{min-height:34px;padding:6px 16px;font-size:13px}
+/* inline per-card feedback line */
+.st-fb{margin-top:10px;font-size:14px;color:var(--ink-2)}
+/* stage cards carry placeholder slots for dots/cues/choices/etc. — collapse
+   any that are empty so sections that don't use them (Mission, Key Terms)
+   have no dead vertical space */
+.st-ctl:empty,.ready-go:empty,.beat-dots:empty,.q-dots:empty,
+.choices:empty,.st-fb:empty,.st-transport:empty{display:none;margin:0;min-height:0}
+.st-fb b{color:var(--ink)}
+
+/* activity tabs */
+.act-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.act-tab{font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;border-radius:9999px;
+  border:1px solid var(--hairline);background:#fff;color:var(--muted);padding:9px 18px}
+.act-tab.on{background:linear-gradient(135deg,#1c1e54,#2e2b8c);border-color:transparent;color:#fff}
+.act-tab .n{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--cream);
+  color:var(--brand-dark);align-items:center;justify-content:center;font-size:11.5px;margin-right:6px}
+.act-tab.on .n{background:rgba(255,255,255,.2);color:#fff}
+.act-tab.done .n{background:#cfe9da;color:#1d6b42}
+
+/* results */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.res-stat{background:var(--cream);border-radius:10px;padding:12px 10px;text-align:center}
+.res-stat b{display:block;font-size:24px;font-feature-settings:"tnum";color:var(--brand-dark)}
+.res-stat span{font-size:12px;color:var(--ink-2);font-weight:600}
+.res-stat.res-good b{color:var(--correct)}
+.res-stat.res-warn b{color:var(--accent-dark)}
+
+/* question progress */
+.q-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.q-dot{width:10px;height:10px;border-radius:50%;background:#e9e2cf;border:1px solid var(--hairline)}
+.q-dot.q-now{background:var(--primary-subtle);border-color:var(--primary)}
+.q-dot.q-good{background:var(--correct);border-color:var(--correct)}
+.q-dot.q-bad{background:var(--wrong);border-color:var(--wrong)}
+
+/* ============ course home (lessons.html) ============ */
+.unit-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:18px}
+.unit-card{background:var(--card);border:1px solid var(--hairline);border-radius:16px;
+  box-shadow:var(--shadow-2);padding:20px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.unit-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px}
+.unit-card.u1::before{background:linear-gradient(90deg,var(--primary),var(--gold))}
+.unit-card.u2::before{background:linear-gradient(90deg,var(--pink),var(--primary))}
+.unit-card.u3::before{background:linear-gradient(90deg,var(--sky),var(--primary))}
+.unit-card.u4::before{background:linear-gradient(90deg,#e05252,var(--gold))}
+.unit-card .u-num{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--primary)}
+.unit-card h3{margin:3px 0 0;font-size:1.12rem;font-weight:800;color:var(--brand-dark);letter-spacing:-.2px}
+.unit-card p{margin:7px 0 12px;color:var(--muted);font-size:13.5px;flex:1}
+.unit-card .u-meta{font-size:12.5px;color:var(--ink-2);font-weight:600;margin-bottom:8px}
+.u-bar{background:#eee5cd;border-radius:9999px;height:9px;overflow:hidden;margin-bottom:12px}
+.u-fill{background:linear-gradient(90deg,#533afd,#8b5cf6);height:100%;border-radius:9999px}
+.unit-card .btn{align-self:flex-start;min-height:38px;padding:8px 20px;font-size:14px}
+.unit-card.locked{opacity:.6}
+.unit-card.locked .btn{background:#c9c2ae;pointer-events:none}
+
+.unit-group{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-top:14px;overflow:hidden}
+.unit-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+  padding:14px 18px;font-weight:800;color:var(--brand-dark)}
+.unit-head .uh-meta{font-weight:600;color:var(--muted);font-size:13px}
+.unit-head span.arr{transition:transform .15s;color:var(--muted)}
+.unit-group.open .unit-head span.arr{transform:rotate(180deg)}
+.unit-body{display:none;border-top:1px solid var(--hairline)}
+.unit-group.open .unit-body{display:block}
+.lesson-link{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:12px 18px;color:var(--ink);text-decoration:none;border-bottom:1px solid #f0ead8;
+  transition:background .12s}
+.lesson-link:last-child{border-bottom:0}
+.lesson-link:hover{background:var(--bg)}
+.lnum{display:inline-block;min-width:46px;font-weight:800;color:var(--primary)}
+.lesson-link .ttl{flex:1 1 220px;font-weight:600}
+.lesson-link .ttl small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.lesson-link .tags{display:flex;gap:5px;flex-wrap:wrap}
+.toc-done{color:var(--correct);font-weight:800;font-size:13px}
+.toc-part{color:var(--accent-dark);font-weight:800;font-size:13px}
+.pill-soon{font-size:11px;font-weight:700;padding:3px 10px;border-radius:9999px;
+  background:#f3eedd;color:#b6ac8e}
+.pill-ready{font-size:11px;font-weight:700;padding:3px 10px;border-radius:9999px;
+  background:#d9efe2;color:#1d6b42}
+
+/* ============ lesson roadmap architecture ============ */
+.hdr-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:var(--muted)}
+.hdr-meta b{color:var(--ink-2)}
+.hdr-progress{background:#eee5cd;border-radius:9999px;height:8px;overflow:hidden;margin-top:12px}
+.hdr-progress>div{background:linear-gradient(90deg,#533afd,#8b5cf6);height:100%;border-radius:9999px;
+  transition:width .4s ease}
+.sc-btn{margin-left:8px}
+
+/* sound check */
+.sound-check .ctl-row{justify-content:flex-start}
+.sound-check input[type=range]{width:180px;accent-color:var(--primary)}
+
+/* mission goals */
+.ms-goals{margin:12px 0 0;padding-left:22px}
+.ms-goals li{margin:6px 0;color:var(--ink-2)}
+
+/* key terms */
+.term-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:13px 4px;border-bottom:1px solid #f0ead8}
+.term-row:last-of-type{border-bottom:0}
+.term-name{flex:0 0 130px;font-weight:800;color:var(--brand-dark)}
+.term-def{flex:1 1 220px;color:var(--ink-2);font-size:14px}
+.term-vis{display:flex;gap:5px;align-items:center;flex:0 0 auto}
+.term-vis .beat-dot{width:16px;height:16px;font-size:0}
+.term-vis .beat-dot.strong{width:22px;height:22px}
+.term-row .btn.sm{flex:0 0 auto}
+.term-row.heard .term-name::after{content:" ✓";color:var(--correct)}
+
+/* beat track — markers travel toward a fixed judgment line */
+.beat-track{position:relative;width:100%;flex:1 1 100%;height:88px;background:#fbf7ec;
+  border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-top:12px}
+.bt-line{position:absolute;left:16%;top:8px;bottom:8px;width:3px;border-radius:2px;
+  background:var(--primary);opacity:.85}
+.bt-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;
+  border-radius:50%;background:var(--primary-subtle);border:2px solid var(--primary);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;
+  color:var(--primary-press)}
+.bt-marker.strong{width:36px;height:36px;background:var(--primary);color:#fff}
+.bt-marker.count{background:#f1e2c4;border-color:var(--accent);color:var(--accent-dark)}
+.bt-pop{position:absolute;left:16%;top:6px;transform:translateX(-50%);font-weight:800;
+  font-size:14px;pointer-events:none;animation:rg-pop .5s ease-out}
+.bt-pop.p-perfect{color:var(--correct)}
+.bt-pop.p-good{color:#4c9a68}
+.bt-pop.p-early,.bt-pop.p-late{color:var(--accent-dark)}
+.bt-pop.p-miss{color:var(--wrong)}
+
+/* pitch visualization (Lesson 1-2): dots placed at heights matched to pitch */
+.pitch-row{position:relative;width:100%;height:64px;margin:4px auto;max-width:360px}
+.pitch-dot{position:absolute;width:22px;height:22px;background:var(--primary-subtle);border-color:var(--primary)}
+/* pitch ladder (Lesson 1-3): 5 solfège levels, highlight in sync with audio */
+.pg-ladder{max-width:300px;margin:6px auto;display:flex;flex-direction:column;gap:6px}
+.pg-row{display:flex;align-items:center;gap:12px}
+.pg-lbl{flex:0 0 42px;text-align:right;font-weight:800;color:var(--brand-dark);font-size:14px}
+.pg-cell{flex:1;height:20px;border-radius:9999px;background:#efe7d3;border:1px solid var(--hairline)}
+.pg-cell.lit{background:var(--primary);border-color:var(--primary-press);
+  box-shadow:0 0 0 3px var(--primary-subtle)}
+/* reserved slot so the grid/reveal never bounces the buttons */
+/* width:100% matters: .beat-dots is a flex row, so without it the slot
+   shrinks to fit and the drawing grid renders SMALLER than the reveal grid
+   of the very same question (instructor: "looks like a different problem") */
+.pg-slot{min-height:200px;width:100%;display:flex;align-items:center;justify-content:center}
+/* interactive drawing grid */
+.pg-draw{margin:6px auto;text-align:center;width:100%}
+.pg-draw svg{display:block;margin:0 auto;touch-action:manipulation}
+.pg-line{stroke:var(--hairline);stroke-width:1.4}
+.pg-slbl{fill:var(--muted);font:700 12px Inter,sans-serif}
+.pg-hit{fill:transparent;cursor:pointer}
+.pg-hit:hover{fill:rgba(83,58,253,.08)}
+.pg-hit:focus-visible{fill:rgba(83,58,253,.14);outline:2px solid var(--primary)}
+.pg-path{stroke:var(--primary);stroke-width:2.6;stroke-linejoin:round}
+.pg-dot{fill:var(--primary)}
+.pg-dot-fixed{fill:var(--accent-dark)}
+/* note numbers above each grid column (1 2 3 4 …) */
+.pg-colnum{fill:var(--muted);font-size:11px;font-weight:700;text-anchor:middle}
+.pg-colnum-fixed{fill:var(--accent-dark)}
+/* "given" anchor note — dashed ring + caption so it reads as pre-placed */
+.pg-anchor-ring{fill:none;stroke:var(--accent-dark);stroke-width:1.6;stroke-dasharray:3 3;opacity:.8}
+.pg-anchor-lbl{fill:var(--accent-dark);font-size:11px;font-weight:800;text-anchor:middle;
+  text-transform:uppercase;letter-spacing:.04em}
+.pg-path.pg-target{stroke:var(--correct)}
+.pg-dot.pg-target{fill:var(--correct)}
+/* moving playhead — the orange ball glides between pitches as the model plays */
+.pg-play{fill:var(--accent);stroke:var(--accent-dark);stroke-width:1.5;
+  filter:drop-shadow(0 0 5px rgba(232,163,61,.75));
+  transition:cx .16s ease,cy .16s ease,opacity .2s ease;pointer-events:none}
+.pg-play-pulse{animation:pgPlayPulse .28s ease-out}
+@keyframes pgPlayPulse{0%{r:13}100%{r:9}}
+
+/* ============ duration bars & echo pad (Lesson 1-4) ============ */
+/* duration bars: filled = sound (length ∝ duration), dashed = silence */
+.db-bar{fill:var(--primary)}
+.db-bar.db-target{fill:var(--correct)}
+.db-bar.db-you{fill:var(--primary-subtle,#b9b1fd)}
+.db-rest{fill:none;stroke:var(--hairline);stroke-width:1.8}   /* empty box = silence */
+.db-tick{stroke:var(--hairline);stroke-width:1;opacity:.55}
+.db-pair{display:flex;flex-direction:column;gap:2px;width:100%}
+.db-row{display:flex;align-items:center;gap:8px;width:100%}
+.db-lbl{flex:0 0 46px;text-align:right;font-size:12px;font-weight:800;color:var(--muted)}
+/* echo: numbered response slots + one large press-and-hold pad */
+.echo-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
+.echo-slots{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.echo-slot{min-width:74px;min-height:52px;border:2px dashed var(--hairline);border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:#fffdf6;transition:background .15s,border-color .15s}
+.echo-slot .es-num{font-size:11px;font-weight:800;color:var(--muted)}
+.echo-slot .es-fill{font-size:12.5px;font-weight:700;color:var(--primary-dark)}
+.echo-slot.lit{border-color:var(--accent);background:#fdf3df}
+.echo-slot.filled{border-style:solid;border-color:var(--primary)}
+.echo-slot.filled.es-r{border-color:var(--hairline);color:var(--muted)}
+.echo-pad{position:relative;overflow:hidden;width:100%;max-width:420px;min-height:110px;
+  border-radius:20px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:#efeaff;border:2px solid #cfc6ff;color:var(--primary-dark);
+  font-weight:800;font-size:18px;user-select:none;touch-action:none}
+.echo-pad small{font-weight:600;font-size:12px;color:var(--muted)}
+.echo-pad.held{background:var(--primary);border-color:var(--primary-dark);color:#fff}
+.echo-pad.held small{color:#e6e2ff}
+/* hold gauge along the pad's bottom edge: the fill grows while you hold;
+   passing the mark means "this is now a LONG sound" */
+.pad-track{position:absolute;left:0;right:0;bottom:0;height:10px;background:rgba(0,0,0,.08)}
+.pad-fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--accent);
+  transition:width .05s linear}
+.pad-mark{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--accent-dark);z-index:1}
+.echo-slot.preview{border-color:var(--accent);background:#fdf3df}
+.echo-slot.preview .es-fill{color:var(--accent-dark)}
+/* footnote under the Key Terms list */
+.terms-note{margin-top:12px;font-size:13px;color:var(--muted);border-top:1px solid var(--hairline);padding-top:10px}
+
+/* visual shape choices (Match the Pitch Shape) — SVG dot-contours */
+.choice.choice-visual{padding:10px 14px;min-height:70px;min-width:120px}
+.choice.choice-visual svg{display:block}
+.choice.choice-visual.good{background:#e2f3e9}
+.choice.choice-visual.bad{background:#fdeaf1}
+.choice.choice-visual svg circle{fill:var(--primary)}
+.choice.choice-visual.good svg circle{fill:var(--correct)}
+.choice.choice-visual.bad svg circle{fill:var(--wrong)}
+
+/* practice / quiz chrome */
+.prac-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.prac-acc{font-size:13px;font-weight:700;color:var(--ink-2);background:var(--cream);
+  border-radius:9999px;padding:6px 14px;font-feature-settings:"tnum"}
+.quiz-meta{font-size:13px;color:var(--muted);font-weight:600}
+.choice.picked{border-color:var(--primary);background:#f2effe;color:var(--primary-dark)}
+
+/* results dashboard */
+.done-msg{margin-top:12px;font-size:1.3rem;font-weight:800;color:var(--brand-dark)}
+.done-msg .pct{font-size:2rem;color:var(--primary);font-feature-settings:"tnum"}
+.done-meta{margin-top:6px;color:var(--muted);font-size:13.5px}
+.up-next{margin-top:16px;background:var(--cream);border-radius:12px;padding:14px 18px}
+.up-next .un-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark)}
+.up-next .un-title{font-weight:800;color:var(--brand-dark);margin-top:2px}
+.up-next p{margin-top:4px;color:var(--ink-2);font-size:14px}
+
+/* bottom lesson navigation (Theory Lab style): 3 pills + jump select */
+.lesson-nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:22px}
+.lnav-pill{display:flex;align-items:center;justify-content:center;text-align:center;
+  min-height:52px;padding:10px 14px;background:#fff;border:1px solid var(--hairline);
+  border-radius:9999px;box-shadow:var(--shadow);font-weight:700;font-size:15px;
+  color:var(--primary);text-decoration:none;transition:transform .12s,box-shadow .15s}
+.lnav-pill:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+.lnav-off{visibility:hidden}
+.lesson-jump{display:block;width:100%;margin-top:14px;
+  font:700 15px/1.3 Inter,"Noto Sans KR","Malgun Gothic",sans-serif;color:var(--primary);
+  background:#fff;border:1px solid var(--hairline);border-radius:9999px;
+  padding:14px 20px;cursor:pointer;box-shadow:var(--shadow)}
+@media(max-width:640px){
+  .lesson-nav{gap:8px}
+  .lnav-pill{font-size:13px;min-height:44px;padding:8px 8px}
+}
+
+/* placeholder page */
+.ph-banner{margin-top:16px;background:#fdf3df;border:1.5px dashed var(--accent);border-radius:12px;
+  padding:14px 18px;color:var(--accent-dark);font-weight:600;font-size:14px}
+
+/* ---- phone layout (portrait) ---- */
+@media(max-width:640px){
+  .al-header h1{font-size:1.55rem}
+  .al-header .inner{padding:22px 16px 26px}
+  .al-main{padding:10px 12px 90px}
+  .card{padding:16px 15px}
+  .act-card{padding:16px 15px}
+  .lesson-head h2{font-size:1.25rem}
+  /* rhythm dots / beat-track sized for a phone */
+  .beat-dot{width:28px;height:28px;font-size:13px}
+  .beat-dot.strong{width:36px;height:36px}
+  .beat-track{height:96px}
+  .bt-marker{width:30px;height:30px}
+  .bt-marker.strong{width:40px;height:40px}
+  /* the tap pads are the main phone input — make them big and thumb-friendly */
+  .tap-pads{gap:10px}
+  .tap-pad{min-height:120px;border-radius:18px}
+  .tap-pad small{display:none}          /* keep the pad label uncluttered on a phone */
+  /* controls & answers stack full-width and stay easy to hit */
+  .ctl-row{gap:10px}
+  .choices{gap:10px}
+  .choice{flex:1 1 100%;min-width:0;min-height:56px}
+  /* visual (shape) choices stay side-by-side on phones — stacking three tall
+     cards blew past the reserved arena and pushed the button strip */
+  .choice.choice-visual{flex:1 1 0;min-width:0;padding:8px 6px;min-height:0}
+  .choice.choice-visual svg{width:100%;height:auto;max-width:104px}
+  .choice.choice-visual svg.db-choice{max-width:150px}   /* duration bars are wider */
+  .echo-pad{min-height:130px}       /* the pad is the main phone input */
+  .st-transport .btn{flex:1 1 100%}
+  .seg{width:100%}
+  .seg button{flex:1}
+  /* Mia keeps her place but never crowds the text */
+  .mia-strip{gap:9px}
+  .mia-avatar{width:44px;height:54px}
+  /* bottom nav: 3 pills stay on one row, jump select comfortable */
+  .lesson-nav{gap:7px}
+  .lnav-pill{font-size:12.5px;padding:8px 6px;min-height:46px}
+  .lesson-jump{min-height:48px}
+  .res-grid{grid-template-columns:repeat(2,1fr)}
+}

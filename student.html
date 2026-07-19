@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Progress · Aural Lab</title>
+<link rel="stylesheet" href="css/style.css?v=001">
+<style>
+.sd-wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
+.sd-card{background:#fff;border:1px solid var(--hairline);border-radius:12px;box-shadow:var(--shadow);padding:18px 20px;margin:14px 0}
+.sd-login input{font-size:18px;padding:12px;border:2px solid var(--hairline-input);border-radius:10px;width:100%;
+  box-sizing:border-box;margin:6px 0;text-transform:uppercase;letter-spacing:1px}
+.sd-login button,.sd-card button{min-height:44px;font:inherit;font-weight:700;cursor:pointer;border:none;
+  border-radius:9999px;padding:10px 22px;background:linear-gradient(135deg,#533afd,#665efd);color:#fff}
+.sd-card button.ghost{background:#fff;color:var(--primary);border:1px solid var(--hairline)}
+.sd-bar{background:#eee5cd;border-radius:9999px;height:12px;overflow:hidden}
+.sd-fill{background:linear-gradient(90deg,#533afd,#8b5cf6);height:100%;border-radius:9999px}
+.sd-unit h3{margin:0 0 6px;font-size:15.5px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;cursor:pointer;color:var(--brand-dark)}
+.sd-pages{display:none;margin-top:10px;border-top:1px dashed var(--hairline);padding-top:8px}
+.sd-unit.open .sd-pages{display:block}
+.sd-row{display:flex;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px solid #f2ecd9;font-size:13.5px;flex-wrap:wrap}
+.sd-row .st{width:20px;text-align:center;flex:none}
+.sd-row .ttl{flex:1 1 200px;min-width:150px}
+.sd-row .res{color:var(--muted);font-size:12.5px;flex:1 1 150px;font-feature-settings:"tnum"}
+.sd-row a{flex:none;padding:6px 12px;border:1.5px solid var(--primary);border-radius:9999px;color:var(--primary);
+  text-decoration:none;font-weight:700;font-size:12.5px}
+.sd-done{color:var(--correct)}.sd-prog{color:var(--accent-dark)}.sd-not{color:#999}
+.sd-err{color:#b91c1c;font-weight:700;min-height:20px}
+</style>
+</head>
+<body>
+<header class="al-header"><div class="inner">
+  <h1 id="appName"></h1>
+  <span class="sub" data-i18n="sd.title"></span>
+  <a class="hdr-link" href="lessons.html" data-i18n="toc.title"></a>
+</div></header>
+<main class="sd-wrap" id="app"><div class="sd-card">…</div></main>
+<script src="js/config.js?v=002"></script>
+<script src="locales/en.js?v=002"></script>
+<script src="locales/es.js?v=002"></script>
+<script src="locales/ko.js?v=002"></script>
+<script src="js/i18n.js?v=002"></script>
+<script src="locales/curriculum.es.js?v=002"></script>
+<script src="js/curriculum.js?v=002"></script>
+<script src="js/progress.js?v=002"></script>
+<script src="js/lms.js?v=002"></script>
+<script>
+(function(){
+  document.title=t("sd.title")+" · "+AL_CONFIG.APP_NAME;
+  document.getElementById("appName").textContent=AL_CONFIG.APP_NAME;
+  ALI18N.apply();
+  const app=document.getElementById("app");
+  const fmt=d=>d?new Date(d).toLocaleDateString(ALI18N.lang(),{year:"numeric",month:"long",day:"numeric"}):"";
+  const pct=(a,b)=>b?Math.round(100*a/b):0;
+  const lessons=AL_CURRICULUM.lessons;
+  const LT=(l,f)=>AL_CURRICULUM.text(l,f), UT=(u,f)=>AL_CURRICULUM.unitText(u,f);
+
+  if(!ALTrack.enabled){
+    app.innerHTML=`<div class="sd-card"><h2>${t("sd.notSetup.t")}</h2>
+      <p>${t("sd.notSetup.b")}</p>${localCard()}</div>`; return;
+  }
+  if(!ALTrack.session()){ renderLogin(); return; }
+  load();
+
+  /* on-device progress summary (shown alongside or without a session) */
+  function localCard(){
+    const dn=lessons.filter(l=>ALProgress.status(l.id)==="completed").length;
+    return `<p style="margin-top:10px">${t("sd.onDeviceN",{d:"<b>"+dn+"</b>"})}</p>`;
+  }
+  function renderLogin(msg){
+    app.innerHTML=`<div class="sd-card sd-login"><h2>${t("sd.signin")}</h2>
+      <p>${t("sd.codesHint")}</p>
+      <label>${t("sd.classCode")}<input id="cc" autocomplete="off" placeholder="e.g. QK7M2P"></label>
+      <label>${t("sd.accessCode")}<input id="ac" autocomplete="off" placeholder="e.g. ABCD-2345"></label>
+      <p class="sd-err" id="err">${msg||""}</p>
+      <button id="go">${t("sd.signinBtn")}</button></div>
+      <div class="sd-card"><h3 style="margin:0 0 4px">${t("sd.onDevice")}</h3>${localCard()}</div>`;
+    document.getElementById("go").onclick=async()=>{
+      const b=document.getElementById("go"); b.disabled=true; b.textContent=t("sd.signingIn");
+      try{
+        const r=await ALTrack.login(document.getElementById("cc").value.trim(),
+                                    document.getElementById("ac").value.trim());
+        if(r.ok) load();
+        else { document.getElementById("err").textContent=r.message||t("sd.failed"); b.disabled=false; b.textContent=t("sd.signinBtn"); }
+      }catch(e){ document.getElementById("err").textContent=t("sd.noServer"); b.disabled=false; b.textContent=t("sd.signinBtn"); }
+    };
+  }
+  async function load(){
+    app.innerHTML=`<div class="sd-card">${t("sd.loading")}</div>`;
+    let data;
+    try{ data=await ALTrack.progress(); }
+    catch(e){ app.innerHTML=`<div class="sd-card"><p class="sd-err">${t("sd.offline")}</p>
+        <button onclick="location.reload()">${t("sd.tryAgain")}</button>
+        <button class="ghost" onclick="if(ALTrack.logout())location.reload()">${t("sd.signout")}</button></div>`; return; }
+    if(!data||!data.ok){ ALTrack.logout(false); return renderLogin(t("sd.expired")); }
+    render(data);
+  }
+  function render(data){
+    const P={}; (data.progress||[]).forEach(p=>{ if(p.course===ALTrack.COURSE) P[String(p.item)]=p; });
+    const doneCount=lessons.filter(l=>(P[String(l.item)]||{}).status==="completed").length;
+    const s=ALTrack.session();
+    const cls=(data.classes&&data.classes[0])||{name:s.class};
+    let html=`<div class="sd-card">
+      <h2 style="margin:0 0 4px">${s.name} <span style="font-weight:400;color:var(--muted);font-size:14px">· ${cls.name} · ${AL_CURRICULUM.courseTitle}</span></h2>
+      <p style="margin:6px 0">${t("sd.completedOf",{d:"<b>"+doneCount+"</b>",n:lessons.length,p:pct(doneCount,lessons.length)})}</p>
+      <div class="sd-bar"><div class="sd-fill" style="width:${pct(doneCount,lessons.length)}%"></div></div>
+      <p style="margin:12px 0 0"><button class="ghost" onclick="if(ALTrack.logout())location.reload()">${t("sd.signout")}</button></p>
+    </div>`;
+    AL_CURRICULUM.units.forEach(u=>{
+      const uls=AL_CURRICULUM.unitLessons(u.unit);
+      const ud=uls.filter(l=>(P[String(l.item)]||{}).status==="completed").length;
+      html+=`<div class="sd-card sd-unit">
+        <h3 onclick="this.parentElement.classList.toggle('open')"><span>${t("unit.label",{u:u.unit})} — ${UT(u,"title")}</span>
+          <span style="font-weight:600;color:var(--muted)">${ud}/${uls.length} · ${pct(ud,uls.length)}%</span></h3>
+        <div class="sd-bar"><div class="sd-fill" style="width:${pct(ud,uls.length)}%"></div></div>
+        <div class="sd-pages">`+
+        uls.map(l=>{
+          const r=P[String(l.item)]||{}; const st=r.status||"not_started";
+          const icon=st==="completed"?'<span class="st sd-done">✅</span>':st==="in_progress"?'<span class="st sd-prog">🟡</span>':'<span class="st sd-not">⬜</span>';
+          const res=l.status==="ready"?t("sd.practiced",{n:r.lbdAttempts||0}):t("sd.plannedRow");
+          return `<div class="sd-row">${icon}
+            <span class="ttl"><b>${l.num}</b> ${LT(l,"title")}</span>
+            <span class="res">${res}${r.completedAt?` · ${t("sd.done",{d:fmt(r.completedAt)})}`:""}</span>
+            <a href="${l.route}">${st==="completed"?t("sd.review"):t("sd.open")}</a></div>`;
+        }).join("")+`</div></div>`;
+    });
+    app.innerHTML=html;
+  }
+})();
+</script>
+</body>
+</html>

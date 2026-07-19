@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aural Lab</title>
+<link rel="stylesheet" href="css/style.css?v=001">
+</head>
+<body>
+<header class="al-header">
+  <div class="inner">
+    <h1 id="appName"></h1>
+    <span class="sub" data-i18n="app.subtitle"></span>
+    <a class="hdr-link" href="lessons.html" data-i18n="toc.title"></a>
+    <a class="hdr-link" href="student.html" data-i18n="nav.myProgress"></a>
+  </div>
+</header>
+<main class="al-main" id="app"></main>
+<script src="js/config.js?v=002"></script>
+<script src="locales/en.js?v=002"></script>
+<script src="locales/es.js?v=002"></script>
+<script src="locales/ko.js?v=002"></script>
+<script src="js/i18n.js?v=002"></script>
+<script src="locales/curriculum.es.js?v=002"></script>
+<script src="js/mia.js?v=002"></script>
+<script src="js/curriculum.js?v=002"></script>
+<script src="js/lesson-nav.js?v=002"></script>
+<script>
+/* Placeholder page for lessons that are PLANNED but not built yet. It shows
+   the real curriculum metadata (so students and the instructor can see where
+   the course is going) and says clearly that the lesson is not available —
+   a placeholder is never presented as a completed lesson. */
+(function(){
+  document.getElementById("appName").textContent=AL_CONFIG.APP_NAME;
+  ALI18N.apply(); ALMia.defs();
+  const id=new URLSearchParams(location.search).get("id");
+  const l=id&&AL_CURRICULUM.byId[id];
+  const app=document.getElementById("app");
+  if(!l){
+    app.innerHTML=`<div class="card"><h2>${t("lesson.notFound")}</h2>
+      <p style="margin-top:8px"><a href="lessons.html">${t("lesson.backToc")}</a></p></div>`;
+    return;
+  }
+  if(l.status==="ready"){ location.replace(l.route); return; }
+  const LT=f=>AL_CURRICULUM.text(l,f);
+  const LTx=(x,f)=>AL_CURRICULUM.text(x,f);
+  document.title=l.num+" "+LT("title")+" · "+AL_CONFIG.APP_NAME;
+  const skillCls={"Rhythm":"sk-rhythm","Pitch":"","Solfège":"sk-solfege","Singing":"sk-singing",
+    "Dictation":"sk-dictation","Harmony":"sk-harmony","Error Detection":"sk-error","Transcription":"sk-dictation"};
+  app.innerHTML=`
+  <section class="lesson-head card">
+    <div class="crumb">${t("lesson.crumb",{u:l.unit,n:l.num})}</div>
+    <h2>${LT("title")}</h2>
+    <p class="desc">${LT("desc")}</p>
+    <div class="skill-tags">${l.skills.map(s=>`<span class="skill-tag ${skillCls[s]||""}">${t("skill."+s)}</span>`).join("")}
+      ${l.track==="major"?`<span class="track-tag">${t("track.major")}</span>`:""}</div>
+    ${ALMia.strip("miaTip","mia-strip-sm")}
+    <p class="lets-try"><b>${t("lesson.letsTryLabel")}</b> “${LT("letsTry")}”</p>
+  </section>
+  <div class="ph-banner">🚧 ${t("lesson.placeholder")}</div>
+  <nav id="lessonNav"></nav>`;
+  ALMia.say("miaTip","<b>"+t("lesson.miaTipLabel")+"</b> “"+LT("tip")+"”");
+  ALLessonNav.mount("lessonNav",l.id,"");
+})();
+</script>
+</body>
+</html>
