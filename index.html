@@ -13,9 +13,12 @@
 .hero .eyebrow{font-size:13.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:rgba(255,255,255,.65);margin-bottom:10px}
 .hero h1{font-size:2rem;font-weight:800;letter-spacing:-.6px;margin-bottom:6px}
-.hero .tagline{font-size:1.25rem;font-weight:800;margin-bottom:12px}
+.hero .tagline{font-size:1.5rem;font-weight:800;margin-bottom:12px;letter-spacing:-.3px}
 .hero .tagline .c1{color:var(--gold)}.hero .tagline .c2{color:var(--pink)}
 .hero .tagline .c3{color:var(--sky)}.hero .tagline .c4{color:#9ef0c0}
+.mia-hero{position:absolute;right:7%;bottom:-10px;width:150px;z-index:1;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.30))}
+@media(max-width:860px){.mia-hero{display:none}}
 .hero h1::after{content:"";display:block;width:64px;height:5px;border-radius:3px;
   background:linear-gradient(90deg,var(--sky),var(--pink));margin:12px 0 0}
 .hero p{max-width:600px;margin:0 0 24px;color:rgba(255,255,255,.88)}
@@ -26,11 +29,24 @@
 .hero .btns a:hover{background:#ffc247;transform:translateY(-2px)}
 .hero .btns a.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6);box-shadow:none}
 main{max-width:860px;margin:0 auto;padding:16px 16px 40px}
-.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:18px}
-.how .card{text-align:center;margin-top:0}
-.how h2{font-size:1.1rem;font-weight:800;color:var(--brand-dark)}
-.how h2::after{content:"";display:block;width:42px;height:4px;border-radius:2px;
-  background:linear-gradient(90deg,var(--primary),var(--sky));margin:7px auto 0}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:18px}
+.how .card{text-align:center;margin-top:0;position:relative;overflow:hidden;padding-top:26px;
+  transition:transform .14s,box-shadow .2s}
+.how .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px}
+.how .card.s1::before{background:linear-gradient(90deg,var(--gold),var(--pink))}
+.how .card.s2::before{background:linear-gradient(90deg,var(--pink),var(--primary))}
+.how .card.s3::before{background:linear-gradient(90deg,var(--sky),var(--primary))}
+.how .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,55,112,.16)}
+.how .ico{width:54px;height:54px;border-radius:14px;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;font-size:28px}
+.how .card.s1 .ico{background:#fff4d6}
+.how .card.s2 .ico{background:#fdeffb}
+.how .card.s3 .ico{background:#edf4ff}
+.how h2{font-size:1.15rem;font-weight:800;color:var(--brand-dark)}
+.how h2::after{content:"";display:block;width:42px;height:4px;border-radius:2px;margin:7px auto 0}
+.how .card.s1 h2::after{background:linear-gradient(90deg,var(--gold),var(--pink))}
+.how .card.s2 h2::after{background:linear-gradient(90deg,var(--pink),var(--primary))}
+.how .card.s3 h2::after{background:linear-gradient(90deg,var(--sky),var(--primary))}
 .how p{margin-top:10px;color:var(--muted);font-size:14px}
 .wide{margin-top:16px;text-align:left}
 footer{text-align:center;padding:4px 16px 28px;color:var(--muted);font-size:14px}
@@ -52,13 +68,13 @@ footer a{color:var(--primary);font-weight:600}
       <a class="ghost" href="student.html" data-i18n="nav.myProgress"></a>
     </div>
   </div>
+  <svg class="mia-hero" viewBox="10 8 100 126" aria-hidden="true"><use href="#miaShape"/></svg>
 </div>
 <main>
   <div class="how">
-    <div class="card"><h2 data-i18n="landing.card.listen.t"></h2><p data-i18n="landing.card.listen.b"></p></div>
-    <div class="card"><h2 data-i18n="landing.card.sing.t"></h2><p data-i18n="landing.card.sing.b"></p></div>
-    <div class="card"><h2 data-i18n="landing.card.read.t"></h2><p data-i18n="landing.card.read.b"></p></div>
-    <div class="card"><h2 data-i18n="landing.card.write.t"></h2><p data-i18n="landing.card.write.b"></p></div>
+    <div class="card s1"><div class="ico">👂</div><h2 data-i18n="landing.card.listen.t"></h2><p data-i18n="landing.card.listen.b"></p></div>
+    <div class="card s2"><div class="ico">🎤</div><h2 data-i18n="landing.card.sing.t"></h2><p data-i18n="landing.card.sing.b"></p></div>
+    <div class="card s3"><div class="ico">✍️</div><h2 data-i18n="landing.card.write.t"></h2><p data-i18n="landing.card.write.b"></p></div>
   </div>
   <div class="card wide">
     <h2 style="font-size:1.1rem;font-weight:800;color:var(--brand-dark)" data-i18n="landing.path.t"></h2>
@@ -69,11 +85,12 @@ footer a{color:var(--primary);font-weight:600}
   <a href="student.html" data-i18n="footer.student"></a> &nbsp;·&nbsp;
   <a href="teacher.html" data-i18n="footer.teacher"></a>
 </footer>
-<script src="js/config.js?v=002"></script>
-<script src="locales/en.js?v=002"></script>
-<script src="locales/es.js?v=002"></script>
-<script src="locales/ko.js?v=002"></script>
-<script src="js/i18n.js?v=002"></script>
-<script>ALI18N.apply();</script>
+<script src="js/config.js?v=003"></script>
+<script src="locales/en.js?v=003"></script>
+<script src="locales/es.js?v=003"></script>
+<script src="locales/ko.js?v=003"></script>
+<script src="js/i18n.js?v=003"></script>
+<script src="js/mia.js?v=003"></script>
+<script>ALI18N.apply(); ALMia.defs();</script>
 </body>
 </html>
