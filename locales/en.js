@@ -26,6 +26,8 @@ const I18N_EN={
   "landing.card.read.b":"Connect what you hear to real notation: meters, keys, intervals and clefs.",
   "landing.card.write.t":"Write",
   "landing.card.write.b":"Dictation and transcription — build the rhythm or melody you heard, note by note.",
+  "landing.how.t":"How each lesson works",
+  "landing.how.b":"Every lesson follows the same short path: <b>Today's Mission → Key Terms → Learn by Doing → Practice → Quiz</b>. Sections open in order, but you can press Continue to skip ahead and practice as long as you like — practice is never graded. Only the final <b>Quiz</b> counts, you may retake it, and when you're signed in with your class codes your quiz results are reported to your instructor automatically.",
   "landing.path.t":"Four units, one integrated path",
   "landing.path.b":"Rhythm, pitch, solfège, singing, dictation and harmony are not separate labs — each lesson mixes the skills the way musicians actually use them. Tap rhythms with the <b>F</b> and <b>J</b> keys (or big touch pads on a phone), answer by choosing or by building your own notation, and let Mia guide you from your first steady beat to four-part harmonic listening.",
   "footer.student":"Student sign-in",

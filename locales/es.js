@@ -27,6 +27,8 @@ const I18N_ES={
   "landing.card.read.b":"Conecta lo que escuchas con la notación real: compases, tonalidades, intervalos y claves.",
   "landing.card.write.t":"Escribe",
   "landing.card.write.b":"Dictado y transcripción — construye el ritmo o la melodía que escuchaste, nota por nota.",
+  "landing.how.t":"Cómo funciona cada lección",
+  "landing.how.b":"Cada lección sigue el mismo camino corto: <b>Misión de hoy → Términos clave → Aprender haciendo → Práctica → Prueba</b>. Las secciones se abren en orden, pero puedes pulsar Continuar para saltar adelante y practicar todo lo que quieras — la práctica nunca se califica. Solo cuenta la <b>Prueba</b> final, puedes repetirla, y cuando inicias sesión con tus códigos de clase tus resultados se informan automáticamente a tu profesor.",
   "landing.path.t":"Cuatro unidades, un camino integrado",
   "landing.path.b":"El ritmo, la altura, el solfeo, el canto, el dictado y la armonía no son laboratorios separados — cada lección combina las destrezas tal como las usan los músicos. Marca ritmos con las teclas <b>F</b> y <b>J</b> (o con paneles táctiles grandes en el teléfono), responde eligiendo o construyendo tu propia notación, y deja que Mia te guíe desde tu primer pulso estable hasta la escucha armónica a cuatro voces.",
   "footer.student":"Acceso de estudiantes",
